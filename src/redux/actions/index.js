@@ -34,5 +34,3 @@ export function fetchCurrencies() {
     }
   };
 }
-
-export default login;
