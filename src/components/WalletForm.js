@@ -12,6 +12,7 @@ class WalletForm extends Component {
   render() {
     const TAG_OPTIONS = ['Alimentação', 'Lazer', 'Trabalho', 'Transporte', 'Saúde'];
     const METHOD_OPTIONS = ['Dinheiro', 'Cartão de crédito', 'Cartão de débito'];
+    const { currencies } = this.props;
 
     return (
       <>
@@ -35,7 +36,13 @@ class WalletForm extends Component {
               name="moeda"
               data-testid="currency-input"
             >
-              <option>Teste</option>
+              {
+                currencies.map((currencie, index) => (
+                  <option key={ index }>
+                    { currencie }
+                  </option>
+                ))
+              }
             </select>
           </label>
 
@@ -91,6 +98,11 @@ class WalletForm extends Component {
 
 WalletForm.propTypes = {
   dispatch: PropTypes.func.isRequired,
+  currencies: PropTypes.shape([]).isRequired,
 };
 
-export default connect()(WalletForm);
+const mapStateToProps = (store) => ({
+  currencies: store.wallet.currencies,
+});
+
+export default connect(mapStateToProps)(WalletForm);

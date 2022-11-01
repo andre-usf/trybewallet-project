@@ -9,16 +9,23 @@ export const INITIAL_STATE_WALLET = {
   expenses: [], // array de objetos, com cada objeto tendo as chaves id, value, currency, method, tag, description e exchangeRates
   editor: false, // valor booleano que indica de uma despesa está sendo editada
   idToEdit: 0, // valor numérico que armazena o id da despesa que esta sendo editada
+  error: null,
 };
 
 function walletReducer(state = INITIAL_STATE_WALLET, action) {
   switch (action.type) {
   case REQUEST_CURRENCIES:
-    return state;
+    return { ...state };
   case RESPONSE_CURRENCIES_SUCCESS:
-    return state;
+    return {
+      ...state,
+      currencies: Object.keys(action.payload).filter((currencie) => currencie !== 'USDT'),
+    };
   case RESPONSE_CURRENCIES_ERROR:
-    return state;
+    return {
+      ...state,
+      error: action.error,
+    };
   default:
     return state;
   }
