@@ -2,6 +2,7 @@
 import { REQUEST_CURRENCIES,
   RESPONSE_CURRENCIES_SUCCESS,
   RESPONSE_CURRENCIES_ERROR,
+  SAVE_EXPENSES,
 } from '../actions/index';
 
 export const INITIAL_STATE_WALLET = {
@@ -25,6 +26,11 @@ function walletReducer(state = INITIAL_STATE_WALLET, action) {
     return {
       ...state,
       error: action.error,
+    };
+  case SAVE_EXPENSES:
+    return {
+      ...state,
+      expenses: [...state.expenses, action.payload],
     };
   default:
     return state;
