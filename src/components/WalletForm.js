@@ -8,7 +8,7 @@ class WalletForm extends Component {
     super();
 
     this.state = {
-      // id: 0,
+      id: 0,
       value: 0,
       currency: 'USD',
       method: 'Dinheiro',
@@ -28,7 +28,12 @@ class WalletForm extends Component {
     this.setState({ [name]: value });
   };
 
+  setID = () => {
+    this.setState((prevState) => ({ id: prevState.id + 1 }));
+  };
+
   handleClick = () => {
+    this.setID();
     const { dispatch } = this.props;
     dispatch(saveExpenses(this.state));
   };
@@ -145,6 +150,7 @@ WalletForm.propTypes = {
 
 const mapStateToProps = (store) => ({
   currencies: store.wallet.currencies,
+  expenses: store.wallet.expenses,
 });
 
 export default connect(mapStateToProps)(WalletForm);
