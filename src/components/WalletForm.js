@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { fetchApi,
   fetchCurrencies,
   saveExpenses } from '../redux/actions/index';
+import Table from './Table';
 
 class WalletForm extends Component {
   constructor() {
@@ -152,6 +153,8 @@ class WalletForm extends Component {
           </button>
 
         </form>
+
+        <Table />
       </>
     );
   }
