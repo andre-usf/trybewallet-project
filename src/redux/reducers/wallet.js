@@ -20,7 +20,8 @@ function walletReducer(state = INITIAL_STATE_WALLET, action) {
   case RESPONSE_CURRENCIES_SUCCESS:
     return {
       ...state,
-      currencies: Object.keys(action.payload),
+      currencies: Object.keys(action.payload)
+        .filter((currencyItem) => currencyItem !== 'USDT'),
     };
   case RESPONSE_CURRENCIES_ERROR:
     return {
