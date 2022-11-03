@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { fetchApi, fetchCurrencies, saveExpenses } from '../redux/actions/index';
+import { fetchApi,
+  fetchCurrencies,
+  saveExpenses } from '../redux/actions/index';
 
 class WalletForm extends Component {
   constructor() {
@@ -40,6 +42,7 @@ class WalletForm extends Component {
     this.setState({ exchangeRates: currenciesData }, () => {
       const { dispatch } = this.props;
       dispatch(saveExpenses(this.state));
+      this.setState({ value: '', description: '' });
     });
   };
 
