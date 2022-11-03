@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { fetchCurrencies, saveExpenses } from '../redux/actions/index';
+import { fetchApi, fetchCurrencies, saveExpenses } from '../redux/actions/index';
 
 class WalletForm extends Component {
   constructor() {
@@ -14,7 +14,7 @@ class WalletForm extends Component {
       method: 'Dinheiro',
       tag: 'Alimentação',
       description: '',
-      // exchangeRates: '',
+      exchangeRates: {},
     };
   }
 
@@ -29,13 +29,23 @@ class WalletForm extends Component {
   };
 
   setID = () => {
-    this.setState((prevState) => ({ id: prevState.id + 1 }));
+    const { expenses } = this.props;
+    if (expenses.length !== 0) {
+      this.setState((prevState) => ({ id: prevState.id + 1 }));
+    }
   };
 
-  handleClick = () => {
+  setExchangeRates = async () => {
+    const currenciesData = await fetchApi();
+    this.setState({ exchangeRates: currenciesData }, () => {
+      const { dispatch } = this.props;
+      dispatch(saveExpenses(this.state));
+    });
+  };
+
+  handleClick = async () => {
     this.setID();
-    const { dispatch } = this.props;
-    dispatch(saveExpenses(this.state));
+    await this.setExchangeRates();
   };
 
   render() {
@@ -71,11 +81,12 @@ class WalletForm extends Component {
               value={ currency }
             >
               {
-                currencies.map((currencyItem, index) => (
-                  <option key={ index }>
-                    { currencyItem }
-                  </option>
-                ))
+                currencies.filter((currencyItem) => currencyItem !== 'USDT')
+                  .map((currencyItem, index) => (
+                    <option key={ index }>
+                      { currencyItem }
+                    </option>
+                  ))
               }
             </select>
           </label>
@@ -145,7 +156,8 @@ class WalletForm extends Component {
 
 WalletForm.propTypes = {
   dispatch: PropTypes.func.isRequired,
-  currencies: PropTypes.arrayOf(PropTypes.string).isRequired,
+  currencies: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
+  expenses: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
 };
 
 const mapStateToProps = (store) => ({

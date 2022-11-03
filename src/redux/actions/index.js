@@ -22,12 +22,17 @@ export const responseCurrenciesError = (error) => ({
   error,
 });
 
+export async function fetchApi() {
+  const response = await fetch('https://economia.awesomeapi.com.br/json/all');
+  const json = await response.json();
+  return json;
+}
+
 export function fetchCurrencies() {
   return async (dispatch) => {
     dispatch(requestCurrencies);
     try {
-      const response = await fetch('https://economia.awesomeapi.com.br/json/all');
-      const json = await response.json();
+      const json = await fetchApi();
       dispatch(responseCurrenciesSuccess(json));
     } catch (error) {
       dispatch(responseCurrenciesError(error));
