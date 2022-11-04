@@ -44,3 +44,9 @@ export function fetchCurrencies() {
 export const SAVE_EXPENSES = 'SAVE_EXPENSES';
 
 export const saveExpenses = (expense) => ({ type: SAVE_EXPENSES, payload: expense });
+
+// ACTION DELETE EXPENSE
+
+export const DELETE_EXPENSE = 'DELETE_EXPENSE';
+
+export const deleteExpense = (expense) => ({ type: DELETE_EXPENSE, payload: expense });
