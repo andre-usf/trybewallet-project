@@ -35,6 +35,33 @@ const initialState = {
   },
 };
 
+async function adicionaDespesa() {
+  const valor = screen.getByTestId('value-input');
+  const moeda = screen.getByTestId('currency-input');
+  const method = screen.getByTestId('method-input');
+  const tag = screen.getByTestId('tag-input');
+  const description = screen.getByTestId('description-input');
+  const button = screen.getByRole('button', { name: 'Adicionar despesa' });
+  userEvent.type(valor, '10');
+  userEvent.selectOptions(moeda, 'USD');
+  userEvent.selectOptions(method, 'Dinheiro');
+  userEvent.selectOptions(tag, 'Alimentação');
+  userEvent.type(description, 'Despesa teste');
+  await act(() => {
+    userEvent.click(button);
+  });
+}
+
+function mockFetch() {
+  global.fetch = jest.fn(() => Promise.resolve({
+    json: () => Promise.resolve(mockData),
+  }));
+}
+
+function mockFetchError() {
+  global.fetch = jest.fn(() => Promise.reject(new Error('error')));
+}
+
 describe('Testa o componente App e suas rotas', () => {
   test('Verifica se, ao digitar um email e senha válidos e clicar no botão "entrar", o usuário é direcionado ao path "/carteira"', () => {
     const { history } = renderWithRouterAndRedux(<App />);
@@ -59,26 +86,32 @@ describe('Testa o componente App e suas rotas', () => {
     expect(emailHeader).toHaveTextContent('teste@teste.com');
   });
   test('Verifica se, ao adicionar uma despesa, o valor total do componente Header é atualizado', async () => {
-    global.fetch = jest.fn(() => Promise.resolve({
-      json: () => Promise.resolve(mockData),
-    }));
-
+    mockFetch();
     renderWithRouterAndRedux(<App />, { initialState, initialEntries: ['/carteira'] });
-    const valor = screen.getByTestId('value-input');
-    const moeda = screen.getByTestId('currency-input');
-    const method = screen.getByTestId('method-input');
-    const tag = screen.getByTestId('tag-input');
-    const description = screen.getByTestId('description-input');
-    const button = screen.getByRole('button', { name: 'Adicionar despesa' });
-    userEvent.type(valor, '10');
-    userEvent.selectOptions(moeda, 'USD');
-    userEvent.selectOptions(method, 'Dinheiro');
-    userEvent.selectOptions(tag, 'Alimentação');
-    userEvent.type(description, 'Despesa teste');
-    await act(() => {
-      userEvent.click(button);
-    });
+    await adicionaDespesa();
     const total = screen.getByTestId('total-field');
     expect(total).toHaveTextContent('47.53');
+  });
+  test('Verifica se, ao adicionar uma despesa, suas informações aparecem na tabela', async () => {
+    mockFetch();
+    renderWithRouterAndRedux(<App />, { initialState, initialEntries: ['/carteira'] });
+    await adicionaDespesa();
+    await adicionaDespesa();
+    const tabela = screen.getAllByRole('rowgroup');
+    expect(tabela[1].childNodes).toHaveLength(2);
+  });
+  test('Verifica se, após adicionar uma despesa, é possível excluí-la', async () => {
+    mockFetch();
+    renderWithRouterAndRedux(<App />, { initialState, initialEntries: ['/carteira'] });
+    await adicionaDespesa();
+    const tabela = screen.getAllByRole('rowgroup');
+    expect(tabela[1].childNodes).toHaveLength(1);
+    const button = screen.getByTestId('delete-btn');
+    userEvent.click(button);
+    expect(tabela[1].childNodes).toHaveLength(0);
+  });
+  test('Verifica se captura o erro ao dar erro no Fetch da API', async () => {
+    mockFetchError();
+    renderWithRouterAndRedux(<App />, { initialState, initialEntries: ['/carteira'] });
   });
 });
