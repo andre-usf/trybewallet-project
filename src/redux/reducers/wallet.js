@@ -4,13 +4,15 @@ import { REQUEST_CURRENCIES,
   RESPONSE_CURRENCIES_ERROR,
   SAVE_EXPENSES,
   DELETE_EXPENSE,
+  EDIT_EXPENSE,
+  SAVE_EDIT_EXPENSE,
 } from '../actions/index';
 
 export const INITIAL_STATE_WALLET = {
-  currencies: [], // array de string
-  expenses: [], // array de objetos, com cada objeto tendo as chaves id, value, currency, method, tag, description e exchangeRates
-  editor: false, // valor booleano que indica de uma despesa está sendo editada
-  idToEdit: 0, // valor numérico que armazena o id da despesa que esta sendo editada
+  currencies: [],
+  expenses: [],
+  editor: false,
+  idToEdit: 0,
   error: null,
 };
 
@@ -39,6 +41,25 @@ function walletReducer(state = INITIAL_STATE_WALLET, action) {
       ...state,
       expenses: state.expenses.filter((expense) => expense.id
       !== action.payload),
+    };
+  case EDIT_EXPENSE:
+    return {
+      ...state,
+      editor: true,
+      idToEdit: action.payload,
+    };
+  case SAVE_EDIT_EXPENSE:
+    return {
+      ...state,
+      expenses: state.expenses.map((expense) => {
+        if (expense.id === state.idToEdit) {
+          expense = action.payload;
+          return expense;
+        }
+        return expense;
+      }),
+      editor: false,
+      idToEdit: 0,
     };
   default:
     return state;

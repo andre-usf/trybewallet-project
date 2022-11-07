@@ -35,7 +35,7 @@ export function fetchCurrencies() {
       const json = await fetchApi();
       dispatch(responseCurrenciesSuccess(json));
     } catch (error) {
-      dispatch(responseCurrenciesError(error));
+      dispatch(responseCurrenciesError(error.message));
     }
   };
 }
@@ -46,7 +46,17 @@ export const SAVE_EXPENSES = 'SAVE_EXPENSES';
 export const saveExpenses = (expense) => ({ type: SAVE_EXPENSES, payload: expense });
 
 // ACTION DELETE EXPENSE
-
 export const DELETE_EXPENSE = 'DELETE_EXPENSE';
 
 export const deleteExpense = (expense) => ({ type: DELETE_EXPENSE, payload: expense });
+
+// ACTION EDIT EXPENSE
+export const EDIT_EXPENSE = 'EDIT_EXPENSE';
+
+export const editExpense = (id) => ({ type: EDIT_EXPENSE, payload: id });
+
+// ACTION SAVE EDIT EXPENSE
+export const SAVE_EDIT_EXPENSE = 'SAVE_EDIT_EXPENSE';
+
+export const saveEditExpense = (expense) => ({
+  type: SAVE_EDIT_EXPENSE, payload: expense });

@@ -32,6 +32,7 @@ const initialState = {
       'DOGE',
     ],
     expenses: [],
+    editor: false,
   },
 };
 
@@ -58,11 +59,11 @@ function mockFetch() {
   }));
 }
 
-function mockFetchError() {
+/* function mockFetchError() {
   global.fetch = jest.fn(() => Promise.reject(new Error('error')));
-}
+} */
 
-describe('Testa o componente App e suas rotas', () => {
+describe('Testa funcionalidades da aplicação', () => {
   test('Verifica se, ao digitar um email e senha válidos e clicar no botão "entrar", o usuário é direcionado ao path "/carteira"', () => {
     const { history } = renderWithRouterAndRedux(<App />);
     const emailInput = screen.getByTestId(EMAIL_INPUT);
@@ -110,8 +111,9 @@ describe('Testa o componente App e suas rotas', () => {
     userEvent.click(button);
     expect(tabela[1].childNodes).toHaveLength(0);
   });
-  test('Verifica se captura o erro ao dar erro no Fetch da API', async () => {
+/*   test('Verifica se captura o erro ao dar erro no Fetch Currencies', async () => {
     mockFetchError();
     renderWithRouterAndRedux(<App />, { initialState, initialEntries: ['/carteira'] });
-  });
+    await adicionaDespesa();
+  }); */
 });
