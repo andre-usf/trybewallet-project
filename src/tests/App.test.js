@@ -33,6 +33,7 @@ const initialState = {
     ],
     expenses: [],
     editor: false,
+    idToEdit: 0,
   },
 };
 
@@ -48,6 +49,23 @@ async function adicionaDespesa() {
   userEvent.selectOptions(method, 'Dinheiro');
   userEvent.selectOptions(tag, 'Alimentação');
   userEvent.type(description, 'Despesa teste');
+  await act(() => {
+    userEvent.click(button);
+  });
+}
+
+async function editaDespesa() {
+  const valor = screen.getByTestId('value-input');
+  const moeda = screen.getByTestId('currency-input');
+  const method = screen.getByTestId('method-input');
+  const tag = screen.getByTestId('tag-input');
+  const description = screen.getByTestId('description-input');
+  const button = screen.getByRole('button', { name: 'Editar despesa' });
+  userEvent.type(valor, '20');
+  userEvent.selectOptions(moeda, 'CAD');
+  userEvent.selectOptions(method, 'Dinheiro');
+  userEvent.selectOptions(tag, 'Alimentação');
+  userEvent.type(description, 'Despesa teste 02');
   await act(() => {
     userEvent.click(button);
   });
@@ -110,6 +128,18 @@ describe('Testa funcionalidades da aplicação', () => {
     const button = screen.getByTestId('delete-btn');
     userEvent.click(button);
     expect(tabela[1].childNodes).toHaveLength(0);
+  });
+  test('Verifica se, após adicionar um despesas, é possível editá-la', async () => {
+    mockFetch();
+    renderWithRouterAndRedux(<App />, { initialState, initialEntries: ['/carteira'] });
+    await adicionaDespesa();
+    await adicionaDespesa();
+    const editar = screen.getAllByTestId('edit-btn');
+    userEvent.click(editar[0]);
+    await editaDespesa();
+    const tabela = screen.getAllByRole('rowgroup');
+    expect(tabela[1].childNodes[0].childNodes[0]).toHaveTextContent('Despesa teste 02');
+    expect(tabela[1].childNodes[0].childNodes[3]).toHaveTextContent('20.00');
   });
 /*   test('Verifica se captura o erro ao dar erro no Fetch Currencies', async () => {
     mockFetchError();
