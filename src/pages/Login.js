@@ -42,30 +42,55 @@ class Login extends React.Component {
   render() {
     const { email, password } = this.state;
     return (
-      <>
-        <div>Login</div>
-        <input
-          type="text"
-          data-testid="email-input"
-          name="email"
-          onChange={ this.handleChange }
-          value={ email }
-        />
-        <input
-          type="password"
-          data-testid="password-input"
-          name="password"
-          onChange={ this.handleChange }
-          value={ password }
-        />
-        <button
-          type="button"
-          disabled={ !this.validateLogin() }
-          onClick={ this.handleClick }
+      <div
+        className="border-2 bg-slate-100
+        flex flex-col items-center justify-center h-screen"
+      >
+        <h1 className="my-7 font-semibold text-4xl text-green-800 ">
+          TRYBEWALLET
+        </h1>
+        <div
+          className="bg-green-300 rounded-lg flex flex-col
+        items-center justify-center h-1/3 w-1/3 shadow-2xl"
         >
-          Entrar
-        </button>
-      </>
+          <h3 className="mb-3">Entre na sua conta:</h3>
+          <input
+            className="border-2 bg-slate-100 rounded-md
+            hover:border-green-800 mt-3 p-1 w-2/3
+            placeholder:italic placeholder:text-slate-400
+            placeholder:text-sm placeholder:antialiased"
+            type="text"
+            data-testid="email-input"
+            name="email"
+            placeholder="  Seu e-mail..."
+            onChange={ this.handleChange }
+            value={ email }
+          />
+          <input
+            className="border-2 bg-slate-100 rounded-md
+            hover:border-green-800 mt-3 p-1 w-2/3
+            placeholder:italic placeholder:text-slate-400
+            placeholder:text-sm antialiased"
+            type="password"
+            data-testid="password-input"
+            name="password"
+            placeholder="  Sua senha..."
+            onChange={ this.handleChange }
+            value={ password }
+          />
+          <button
+            className="rounded-md bg-slate-100 font-semibold text-green-800
+            hover:bg-green-800
+            hover:text-white mt-5 p-1 w-1/3
+            disabled:bg-slate-200 disabled:text-slate-400"
+            type="button"
+            disabled={ !this.validateLogin() }
+            onClick={ this.handleClick }
+          >
+            Entrar
+          </button>
+        </div>
+      </div>
     );
   }
 }

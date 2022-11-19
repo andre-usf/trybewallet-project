@@ -12,10 +12,12 @@ class Header extends Component {
 
     return (
       <header>
-        <div>Header</div>
-        <div><p data-testid="email-field">{email}</p></div>
-        <div><p data-testid="total-field">{totalExpenses.toFixed(2)}</p></div>
-        <div><p data-testid="header-currency-field">BRL</p></div>
+        <h1>Header</h1>
+        <div className="flex space-x-4">
+          <p data-testid="email-field">{email}</p>
+          <p data-testid="total-field">{totalExpenses.toFixed(2)}</p>
+          <p data-testid="header-currency-field">BRL</p>
+        </div>
       </header>
     );
   }
