@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { login } from '../redux/actions/index';
+import logoLogin from '../img/logo-login.png';
 
 class Login extends React.Component {
   constructor() {
@@ -43,20 +44,19 @@ class Login extends React.Component {
     const { email, password } = this.state;
     return (
       <div
-        className="border-2 bg-slate-100
+        className="bg-slate-100
         flex flex-col items-center justify-center h-screen"
       >
-        <h1 className="my-7 font-semibold text-4xl text-green-800 ">
-          TRYBEWALLET
-        </h1>
+        <img className="my-7" src={ logoLogin } alt="logo" />
         <div
-          className="bg-green-300 rounded-lg flex flex-col
-        items-center justify-center h-1/3 w-1/3 shadow-2xl"
+          className="bg-[#2FC18C] rounded-lg flex flex-col
+        items-center justify-center h-1/3 w-1/6 shadow-2xl"
         >
-          <h3 className="mb-3">Entre na sua conta:</h3>
+          <h3 className="mb-3 text-slate-100 font-semibold">Entre na sua conta:</h3>
           <input
-            className="border-2 bg-slate-100 rounded-md
-            hover:border-green-800 mt-3 p-1 w-2/3
+            className="border-2 bg-slate-100 rounded-md mt-3 p-1 w-2/3 px-2
+            hover:border-green-800  focus:outline-none
+            focus:border-green-800 focus:ring-1 focus:ring-green-800
             placeholder:italic placeholder:text-slate-400
             placeholder:text-sm placeholder:antialiased"
             type="text"
@@ -67,8 +67,9 @@ class Login extends React.Component {
             value={ email }
           />
           <input
-            className="border-2 bg-slate-100 rounded-md
-            hover:border-green-800 mt-3 p-1 w-2/3
+            className="border-2 bg-slate-100 rounded-md mt-3 p-1 w-2/3 px-2
+            hover:border-green-800  focus:outline-none
+            focus:border-green-800 focus:ring-1 focus:ring-green-800
             placeholder:italic placeholder:text-slate-400
             placeholder:text-sm antialiased"
             type="password"
@@ -79,8 +80,8 @@ class Login extends React.Component {
             value={ password }
           />
           <button
-            className="rounded-md bg-slate-100 font-semibold text-green-800
-            hover:bg-green-800
+            className="rounded-md bg-slate-100 font-semibold text-[#003BE5]
+            hover:bg-[#003BE5]
             hover:text-white mt-5 p-1 w-1/3
             disabled:bg-slate-200 disabled:text-slate-400"
             type="button"

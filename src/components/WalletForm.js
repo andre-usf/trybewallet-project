@@ -72,111 +72,117 @@ class WalletForm extends Component {
     const { value, currency, method, tag, description } = this.state;
 
     return (
-      <>
-        <div>WalletForm</div>
-        <form>
-
-          <label htmlFor="value">
-            Valor:
-            <input
-              id="value"
-              type="number"
-              data-testid="value-input"
-              name="value"
-              onChange={ this.handleChange }
-              value={ value }
-            />
-          </label>
-
-          <label htmlFor="currency">
-            Moeda:
-            <select
-              id="currency"
-              name="currency"
-              data-testid="currency-input"
-              onChange={ this.handleChange }
-              value={ currency }
-            >
-              {
-                currencies.filter((currencyItem) => currencyItem !== 'USDT')
-                  .map((currencyItem, index) => (
+      <div className="h-screen bg-[#E1E5EB] flex flex-col items-center">
+        <form
+          className="flex items-center flex-wrap justify-center p-3 bg-[#2FC18C] w-3/4"
+        >
+          <div className="text-[#003BE5] font-semibold">
+            <label htmlFor="tag">
+              Categoria:
+              <select
+                id="tag"
+                name="tag"
+                data-testid="tag-input"
+                onChange={ this.handleChange }
+                value={ tag }
+              >
+                {
+                  TAG_OPTIONS.map((tagItem, index) => (
                     <option key={ index }>
-                      { currencyItem }
+                      { tagItem }
                     </option>
                   ))
-              }
-            </select>
-          </label>
+                }
+              </select>
+            </label>
 
-          <label htmlFor="method">
-            Método de pagamento:
-            <select
-              id="method"
-              name="method"
-              data-testid="method-input"
-              onChange={ this.handleChange }
-              value={ method }
-            >
-              {
-                METHOD_OPTIONS.map((methodItem, index) => (
-                  <option key={ index }>
-                    { methodItem }
-                  </option>
-                ))
-              }
-            </select>
-          </label>
+            <label htmlFor="description">
+              Descrição:
+              <input
+                id="description"
+                type="text"
+                data-testid="description-input"
+                name="description"
+                onChange={ this.handleChange }
+                value={ description }
+              />
+            </label>
+          </div>
 
-          <label htmlFor="tag">
-            Categoria:
-            <select
-              id="tag"
-              name="tag"
-              data-testid="tag-input"
-              onChange={ this.handleChange }
-              value={ tag }
-            >
-              {
-                TAG_OPTIONS.map((tagItem, index) => (
-                  <option key={ index }>
-                    { tagItem }
-                  </option>
-                ))
-              }
-            </select>
-          </label>
+          <div className="text-[#003BE5] font-semibold">
+            <label htmlFor="value">
+              Valor:
+              <input
+                id="value"
+                type="number"
+                data-testid="value-input"
+                name="value"
+                onChange={ this.handleChange }
+                value={ value }
+              />
+            </label>
 
-          <label htmlFor="description">
-            Descrição:
-            <input
-              id="description"
-              type="text"
-              data-testid="description-input"
-              name="description"
-              onChange={ this.handleChange }
-              value={ description }
-            />
-          </label>
-
-          {editor
-            ? (
-              <button
-                type="button"
-                onClick={ this.handleClickEditor }
+            <label htmlFor="currency">
+              Moeda:
+              <select
+                id="currency"
+                name="currency"
+                data-testid="currency-input"
+                onChange={ this.handleChange }
+                value={ currency }
               >
-                Editar despesa
-              </button>)
-            : (
-              <button
-                type="button"
-                onClick={ this.handleClick }
+                {
+                  currencies.filter((currencyItem) => currencyItem !== 'USDT')
+                    .map((currencyItem, index) => (
+                      <option key={ index }>
+                        { currencyItem }
+                      </option>
+                    ))
+                }
+              </select>
+            </label>
+
+            <label htmlFor="method">
+              Método de pagamento:
+              <select
+                id="method"
+                name="method"
+                data-testid="method-input"
+                onChange={ this.handleChange }
+                value={ method }
               >
-                Adicionar despesa
-              </button>)}
+                {
+                  METHOD_OPTIONS.map((methodItem, index) => (
+                    <option key={ index }>
+                      { methodItem }
+                    </option>
+                  ))
+                }
+              </select>
+            </label>
+          </div>
+
+          <div>
+            {editor
+              ? (
+                <button
+                  type="button"
+                  onClick={ this.handleClickEditor }
+                >
+                  Editar despesa
+                </button>)
+              : (
+                <button
+                  type="button"
+                  onClick={ this.handleClick }
+                >
+                  Adicionar despesa
+                </button>)}
+          </div>
         </form>
 
         <Table />
-      </>
+      </div>
     );
   }
 }

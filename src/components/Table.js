@@ -17,8 +17,8 @@ class Table extends Component {
   render() {
     const { expenses } = this.props;
     return (
-      <div>
-        <table>
+      <div className="flex items-center justify-center w-10/12">
+        <table className="bg-[#003BE5] text-white w-9/12">
           <thead>
             <tr>
               <th>Descrição</th>
