@@ -1,10 +1,6 @@
-// Esse reducer será responsável por tratar as informações da pessoa usuária
-
 import { USER_LOGIN } from '../actions';
 
-const INITIAL_STATE_USER = {
-  email: '', // string que armazena o email da pessoa usuária
-};
+const INITIAL_STATE_USER = { email: '' };
 
 function loginReducer(state = INITIAL_STATE_USER, action) {
   switch (action.type) {

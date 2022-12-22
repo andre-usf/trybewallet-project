@@ -50,7 +50,7 @@ class Login extends React.Component {
         <img className="my-7" src={ logoLogin } alt="logo" />
         <div
           className="bg-[#2FC18C] rounded-lg flex flex-col
-        items-center justify-center h-1/3 w-1/6 shadow-2xl"
+        items-center justify-center h-1/3 w-2/6 max-w-[30%] shadow-2xl"
         >
           <h3 className="mb-3 text-slate-100 font-semibold">Entre na sua conta:</h3>
           <input
@@ -83,7 +83,7 @@ class Login extends React.Component {
             className="rounded-md bg-slate-100 font-semibold text-[#003BE5]
             hover:bg-[#003BE5]
             hover:text-white mt-5 p-1 w-1/3
-            disabled:bg-slate-200 disabled:text-slate-400"
+            disabled:bg-slate-200 disabled:text-slate-400 disabled:cursor-not-allowed"
             type="button"
             disabled={ !this.validateLogin() }
             onClick={ this.handleClick }

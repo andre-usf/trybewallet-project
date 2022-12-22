@@ -77,10 +77,6 @@ function mockFetch() {
   }));
 }
 
-/* function mockFetchError() {
-  global.fetch = jest.fn(() => Promise.reject(new Error('error')));
-} */
-
 describe('Testa funcionalidades da aplicação', () => {
   test('Verifica se, ao digitar um email e senha válidos e clicar no botão "entrar", o usuário é direcionado ao path "/carteira"', () => {
     const { history } = renderWithRouterAndRedux(<App />);
@@ -141,9 +137,4 @@ describe('Testa funcionalidades da aplicação', () => {
     expect(tabela[1].childNodes[0].childNodes[0]).toHaveTextContent('Despesa teste 02');
     expect(tabela[1].childNodes[0].childNodes[3]).toHaveTextContent('20.00');
   });
-/*   test('Verifica se captura o erro ao dar erro no Fetch Currencies', async () => {
-    mockFetchError();
-    renderWithRouterAndRedux(<App />, { initialState, initialEntries: ['/carteira'] });
-    await adicionaDespesa();
-  }); */
 });

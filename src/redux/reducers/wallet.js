@@ -1,4 +1,3 @@
-// Esse reducer será responsável por tratar o todas as informações relacionadas as despesas
 import { REQUEST_CURRENCIES,
   RESPONSE_CURRENCIES_SUCCESS,
   RESPONSE_CURRENCIES_ERROR,

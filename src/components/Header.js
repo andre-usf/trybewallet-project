@@ -20,19 +20,19 @@ class Header extends Component {
           <img className="my-7" src={ logoLogin } alt="login logo" />
           <p
             data-testid="total-field"
-            className="text-[#003BE5] font-semibold"
+            className="text-[#003BE5] font-semibold mt-3"
           >
             {`Total de despesas: ${totalExpenses.toFixed(2)}`}
           </p>
           <p
             data-testid="header-currency-field"
-            className="text-[#003BE5] font-semibold"
+            className="text-[#003BE5] font-semibold mt-3"
           >
             BRL
           </p>
           <p
             data-testid="email-field"
-            className="text-[#2FC18C] font-semibold"
+            className="text-[#2FC18C] font-semibold mt-3"
           >
             {email}
           </p>
