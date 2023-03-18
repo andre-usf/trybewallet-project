@@ -5,7 +5,7 @@ A TrybeWallet é uma carteira que possibilita controlar gastos. Nela é possíve
 O projeto foi desenvolvido durante o módulo de front-end na [Trybe](https://www.betrybe.com/).
 
 ## Tecnologias e ferramentas utilizadas 
-___
+
 ![NPM](https://img.shields.io/badge/NPM-%23CB3837.svg?style=for-the-badge&logo=npm&logoColor=white)
 ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
 ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
@@ -15,7 +15,7 @@ ___
 ![TailwindCSS](https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white)
 
 ## Implementações
-___
+
 - Tela de login com validação de e-mail e senha;
 - Utilização do React Router para criar as rotas das páginas da aplicação;
 - Integração do Redux com os componentes do React;
@@ -26,7 +26,6 @@ ___
 - Estilização do projeto com Tailwind CSS.
 
 ## Instalação e uso
-___
 
 1. Clone o repositório:
 
@@ -53,7 +52,6 @@ npm start
 ```
 
 ## Sobre mim
-___
 
 [Linkedin](https://www.linkedin.com/in/andrefretta/)
 
