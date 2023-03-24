@@ -72,7 +72,7 @@ class WalletForm extends Component {
     const { value, currency, method, tag, description } = this.state;
 
     return (
-      <div className="h-screen bg-[#E1E5EB] flex flex-col items-center w-full">
+      <div className="h-screen bg-slate-100 flex flex-col items-center w-full">
         <form
           className="flex flex-col items-center rounded-t-md
           justify-center p-5 bg-[#2FC18C] w-8/12 gap-4"

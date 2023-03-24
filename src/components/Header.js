@@ -15,7 +15,7 @@ class Header extends Component {
       <header>
         <div
           className="flex items-center justify-center space-x-4
-          p-3 bg-[#E1E5EB]"
+          p-3 bg-slate-100"
         >
           <img className="my-7" src={ logoLogin } alt="login logo" />
           <p
