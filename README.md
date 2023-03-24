@@ -51,6 +51,10 @@ npm install
 npm start
 ```
 
+## Você também pode acessar por esse link:
+
+https://trybewallet-project-phi.vercel.app/
+
 ## Sobre mim
 
 [Linkedin](https://www.linkedin.com/in/andrefretta/)
