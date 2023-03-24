@@ -57,6 +57,8 @@ npm install
 npm start
 ```
 
+5. Para fazer login utilize um email no padrão "email@domínio.com" e uma senha de no mínimo 6 dígitos.
+
 ## Você também pode acessar por esse link:
 
 https://trybewallet-project-phi.vercel.app/
