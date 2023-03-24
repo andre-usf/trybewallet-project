@@ -4,6 +4,12 @@ A TrybeWallet é uma carteira que possibilita controlar gastos. Nela é possíve
 
 O projeto foi desenvolvido durante o módulo de front-end na [Trybe](https://www.betrybe.com/).
 
+## Screenshots
+
+![Capturar](https://user-images.githubusercontent.com/104278765/227392072-d4288b78-050e-44c1-97e9-aaff4bdd1720.PNG)
+![Capturar2](https://user-images.githubusercontent.com/104278765/227393323-caa36337-e459-4e37-8024-017dc640421a.PNG)
+
+
 ## Tecnologias e ferramentas utilizadas 
 
 ![NPM](https://img.shields.io/badge/NPM-%23CB3837.svg?style=for-the-badge&logo=npm&logoColor=white)
